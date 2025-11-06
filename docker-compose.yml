@@ -1,0 +1,19 @@
+services:
+  spark-hadoop-lab:
+    build:
+      context: ./docker
+    container_name: arxiv_analysis_lab
+    ports:
+      - "8088:8088" # YARN ResourceManager UI
+      - "9870:9870" # HDFS NameNode UI
+      - "8080:8080" # Spark UI
+      - "7077:7077" # Spark Master
+      - "9000:9000" # HDFS
+    volumes:
+      # Mount your local notebooks directory into the container
+      # Mount a local directory for data
+      - ./data:/project/data
+    environment:
+      - PYSPARK_PYTHON=/usr/bin/python3
+      - PYSPARK_DRIVER_PYTHON=/usr/bin/python3
+
